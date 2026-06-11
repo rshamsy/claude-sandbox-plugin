@@ -1,0 +1,62 @@
+# claude-sandbox
+
+A Claude Code plugin that sets up Docker-based sandboxes with permission profiles, container tracking, and session resume.
+
+## Skills
+
+| Skill | Description |
+|-------|-------------|
+| `/claude-sandbox:init-sandbox` | Generate all sandbox files for the current project |
+| `/claude-sandbox:setup-sandbox` | View documentation and customization options |
+
+## Features
+
+- **Permission profiles**: Safe mode (restricted) and full trust mode
+- **Container tracking**: Records container name/ID in `.sandbox-state.json` so you can find them later
+- **Session resume**: Pick a container interactively, then pick a Claude session to resume
+- **Auto-update**: Claude Code is updated to the latest version every time a container is created or re-entered
+- **Plugin support**: Pre-configures ralph-loop plugin inside the container
+
+## Install
+
+### As a plugin (recommended for cross-machine use)
+
+```bash
+# In Claude Code, add this repo as a marketplace:
+/plugin marketplace add your-github-username/claude-sandbox-plugin
+
+# Install:
+/plugin install claude-sandbox@your-github-username-claude-sandbox-plugin --scope user
+```
+
+### As standalone skills (single machine)
+
+Copy the skills into your user-level skills directory:
+
+```bash
+cp -r skills/init-sandbox ~/.claude/skills/
+cp -r skills/setup-sandbox ~/.claude/skills/
+```
+
+## Usage
+
+1. Navigate to any project directory
+2. Run `/init-sandbox` (or `/claude-sandbox:init-sandbox` if installed as plugin)
+3. Set your `ANTHROPIC_API_KEY` environment variable
+4. Run `./sandbox.sh full` to start
+
+### Resume a previous session
+
+```bash
+./sandbox.sh resume        # full trust, interactive container + session picker
+./sandbox.sh resume safe   # safe mode
+```
+
+## What gets generated
+
+- `Dockerfile.claude-sandbox` — Docker image with Python, Node.js, Claude CLI
+- `docker-compose.sandbox.yml` — Container config with volume mounts
+- `sandbox.sh` — Launch script (safe/full/shell/resume modes)
+- `.sandbox-state.json` — Container signature tracking (gitignored)
+- `.claude/profiles/` — Permission profiles
+- `.claude-plugins/` — Plugin configuration

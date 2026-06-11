@@ -1,0 +1,10 @@
+{
+  "name": "claude-sandbox",
+  "description": "Initialize and manage Docker-based Claude Code sandboxes with permission profiles, container tracking, and session resume",
+  "version": "1.0.0",
+  "author": {
+    "name": "rahimlenovo"
+  },
+  "repository": "",
+  "keywords": ["sandbox", "docker", "container", "resume", "permissions"]
+}
