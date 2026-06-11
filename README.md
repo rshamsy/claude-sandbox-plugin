@@ -23,10 +23,10 @@ A Claude Code plugin that sets up Docker-based sandboxes with permission profile
 
 ```bash
 # In Claude Code, add this repo as a marketplace:
-/plugin marketplace add your-github-username/claude-sandbox-plugin
+/plugin marketplace add rshamsy/claude-sandbox-plugin
 
 # Install:
-/plugin install claude-sandbox@your-github-username-claude-sandbox-plugin --scope user
+/plugin install claude-sandbox@rshamsy-claude-sandbox-plugin --scope user
 ```
 
 ### As standalone skills (single machine)
